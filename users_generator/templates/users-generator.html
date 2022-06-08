@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Генератор пользователей
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <h3>Генератор случайных пользователей</h3>
+            <label for="quantity">Количество пользоватлей:</label><br>
+            <input type="text" name="quantity" id="quantity" class="form-control-sm text-mute">
+            <input type="submit" class="btn btn-success" value="Создать">
+        </form>
+        <ul>
+            {% for i in users %}
+                <li>{{ i.name }}: {{ i.email }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
