@@ -1,10 +1,8 @@
-from collections import namedtuple
+from typing import Iterator
 
-from faker import Faker
-
-fake = Faker('ru_RU')
+from users_generator.utils import User, generate_user
 
 
-def generator(quantity: int = 100):
-    user = namedtuple('user', 'name email')
-    return (user(fake.first_name(), fake.unique.ascii_email()) for _ in range(quantity))
+def generator_of_users(amount_of_users: int) -> Iterator[User]:
+    for _ in range(amount_of_users):
+        yield generate_user()
